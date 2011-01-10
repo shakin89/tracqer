@@ -1,0 +1,21 @@
+{% extends "rda/base-rda.html" %}
+
+{% block content %}
+test
+			<form action="/rda/changeYear/" id="form-anno" method="POST">
+			{% csrf_token %}
+			<input type="hidden" value="test1" />
+			Seleziona Anno: 
+			<select id="scelta_anno" name="scelta_anno">
+			{% for anno in anni_rda %}
+			    {% if anno == anno_corrente  %}
+			    <option value="{{ anno }}" selected="selected">{{ anno }}</option>
+			    {% else %}
+			    <option id="scelta_anno" value="{{ anno }}">{{ anno }}</option>
+			    {% endif %}    
+			{% endfor %}
+			</select>
+			<input type="submit" value="Vai" title="Vai" />
+			</form>
+
+{% endblock content %}

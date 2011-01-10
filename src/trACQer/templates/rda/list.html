@@ -1,0 +1,76 @@
+{% extends "rda/base-rda.html" %}
+
+{% block content %}
+{% if rda_list %}
+<div id="content-page-container">
+	<div id="content-page-header">
+		<div id="content-page-additional">
+			<form action="" id="form-anno" method="POST">
+			{% csrf_token %}
+			Seleziona Anno: 
+			<select name="scelta_anno">
+			{% for anno in anni_rda %}
+			    {% if anno == anno_corrente  %}
+			    <option id="scelta_anno" value="{{ anno }}" selected="selected">{{ anno }}</option>
+			    {% else %}
+			    <option id="scelta_anno" value="{{ anno }}">{{ anno }}</option>
+			    {% endif %}    
+			{% endfor %}
+			</select>
+			<input type="submit" value="Vai" title="Vai" />
+			</form>
+		</div>
+		<div id="content-page-title">
+		    <h3>Lista R.d.A. per l'anno {{ anno }}</h3>
+		</div>
+	</div>
+	<div id="content-page-detail">
+		<table class="tab-object-list">
+			<tr>
+				<th>Azioni</th>
+				<th>Funz. / Nr. Origine</th>
+				<th>Numero R.d.A.</th>
+				<th>Data arrivo ACQ</th>
+				<th>Annullata</th>
+			</tr>
+			{% for rda in rda_list %}
+			<tr class="{% cycle 'tab-riga-pari' 'tab-riga-dispari' %}">
+				<td class="tab-cel-azioni">azioni</td>
+				<td>{{ rda.funzione_origine }}&minus;{{ rda.numero_origine }}</td>
+				<td>{{ rda.numero }}</td>
+				<td>{{ rda.data_arrivo_acq|default_if_none:'&nbsp;' }}</td>
+				<td>
+				{% if rda.annullata %}
+					<img alt="annullata" src="/static/img/annullata.jpg">
+				{% else %}
+					&nbsp;
+				{% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<b>Non ci sono R.d.A. da visualizzare</b>
+		{% endif %}
+		{% if is_paginated %}
+		<div class="pagination">
+		    <span class="step-links">
+		        {% if rda_list.has_previous %}
+		            <a href="?page={{ rda_list.previous_page_number }}">&lt;&lt; Precedente</a>
+		        {% endif %}
+		
+		        <span class="current">
+		            Pagina {{ rda_list.number }} di {{ rda_list.paginator.num_pages }}.
+		        </span>
+		
+		        {% if rda_list.has_next %}
+		            <a href="?page={{ rda_list.next_page_number }}">Prossimo &gt;&gt;</a>
+		        {% endif %}
+		    </span>
+		</div>
+		{% endif %}
+	</div>
+</div>
+
+
+{% endblock content %}

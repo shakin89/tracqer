@@ -1,0 +1,66 @@
+{% extends "note/base-note.html" %}
+
+{% block content_page_additional %}
+			<form action="" id="form-anno" method="POST">
+			{% csrf_token %}
+			Seleziona Anno: 
+			<select name="scelta_anno">
+			{% for a in anni_note %}
+			    {% if a == anno_corrente  %}
+	       		    <option id="scelta_anno" value="{{ a }}" selected="selected">{{ a }}</option>
+			    {% else %}
+			        <option id="scelta_anno" value="{{ a }}">{{ a }}</option>
+			    {% endif %}    
+			{% endfor %}
+			</select>
+			<input type="submit" value="Vai" title="Vai" />
+			</form>
+{% endblock content_page_additional %}
+
+{% block content_page_title %}
+		    <h3>Lista Note per l'anno {{ anno }}</h3>
+{% endblock content_page_title %}
+
+{% block content_page_detail %}
+{% if note_list %}
+		<table class="tab-object-list">
+			<tr>
+				<th>Azioni</th>
+				<th>Nota Nr.</th>
+				<th>Dir. Richiedente</th>
+				<th>Data arrivo ACQ</th>
+				<th>Protocollo</th>
+				<th>Numero T.I.</th>
+			</tr>
+			{% for nota in note_list %}
+			<tr class="{% cycle 'tab-riga-pari' 'tab-riga-dispari' %}">
+				<td class="tab-cel-azioni">&nbsp;</td>
+				<td>{{ nota.sigla }}</td>
+				<td>{{ nota.direzione_richiedente }}</td>
+				<td>{{ nota.protocollo_acq_data|default_if_none:"&nbsp;" }}</td>
+				<td>{{ nota.protocollo|default_if_none:"&nbsp;" }}</td>
+				<td>{{ nota.numero_ti|default_if_none:"&nbsp;" }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+{% else %}
+    <div>Non ci sono Note da visualizzare</div>
+{% endif %}
+		{% if is_paginated %}
+		<div class="pagination">
+		    <span class="step-links">
+		        {% if note_list.has_previous %}
+		            <a href="?page={{ note_list.previous_page_number }}">&lt;&lt; Precedente</a>
+		        {% endif %}
+		
+		        <span class="current">
+		            Pagina {{ note_list.number }} di {{ note_list.paginator.num_pages }}.
+		        </span>
+		
+		        {% if note_list.has_next %}
+		            <a href="?page={{ note_list.next_page_number }}">Prossimo &gt;&gt;</a>
+		        {% endif %}
+		    </span>
+		</div>
+		{% endif %}
+{% endblock content_page_detail %}

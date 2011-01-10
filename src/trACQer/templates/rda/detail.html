@@ -1,0 +1,18 @@
+{% extends "rda/base-rda.html" %}
+
+{% block content %}
+<h3>R.d.A. Nr. {{ rda.numero }}</h3>
+<table id="tab-rda-detail">
+  <tr class="tab-riga-dispari">
+    <th class="tab-rda-th">Funzione Origine:</th>
+    <td class="tab-rda-td">{{ rda.funzione_origine }}</td>
+  </tr>
+  <tr class="tab-riga-pari">
+    <th class="tab-rda-th">Numero:</th>
+    <td class="tab-rda-td">{{ rda.numero }}</td>
+  </tr>
+</table>
+
+
+{% endblock content %}
+

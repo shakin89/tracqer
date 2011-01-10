@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+	<title>{% block title %}{% endblock title %}</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<meta name="description" content="trACQer Application" />
+	<meta name="keywords" content="trACQer Application" />
+	<meta name="robots" content="index, follow" />
+	<link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+	{% block css %}
+<!--
+     <link rel="stylesheet" href="/static/css/uni-form.css" type="text/css" media="screen"  />
+    <link rel="stylesheet" href="/static/css/blue.uni-form.css" type="text/css" media="screen" />
+-->
+    <link rel="stylesheet" href="/static/css/tracqer2c.css" type="text/css" media="screen" /> 
+    <link rel="stylesheet" href="/static/css/central-menu.css" type="text/css" media="screen" /> 
+    <link rel="stylesheet" href="/static/css/left-menu.css" type="text/css" media="screen" /> 
+    <link rel="stylesheet" href="/static/css/tracqer-body.css" type="text/css" media="screen" /> 
+	{% endblock css %}
+	{% block extracss %}
+	{% endblock extracss%}
+	{% block javascript %}
+    <script type="text/javascript" src="/static/js/layout.js"></script>
+<!--
+    <script type="text/javascript" src="/static/js/jquery-1.4.4.js"></script>
+    <script type="text/javascript" src="/static/js/uni-form.jquery.js"></script>
+-->
+	
+	{% endblock javascript %}
+</head>
+<body id="body" class="liquid">
+<div id="wrapper">
+	<div id="header">
+	   <p class="layoutstile"><a href="javascript:togglelayout()" id="layoutstile">Cambia layout</a></p>
+		<h1>
+		{% block header_content %}
+		trACQer App
+		{% endblock header_content%}</h1>
+		{% block h2_header_subtitle %}
+		{% endblock h2_header_subtitle %}
+	</div>
+    {% block topmenu %}
+    <div id="centeredmenu">
+        <ul>
+            <li><a href="/rda/">R.d.A.</a></li>
+            <li><a href="/oda/">O.d.A.</a></li>
+            <li><a href="/gare/">Gare</a></li>
+            <li><a href="/buyers/">Buyers</a></li>
+            <li><a href="/imprese/">Imprese</a></li>
+            <li><a href="/certificazioni/">R.D.A.</a></li>
+            <li><a href="/admin/">Configrazione</a></li>
+            <li><a href="/auth/login/">Login</a></li>
+            <li><a href="/auth/logout/">Logout</a></li>
+        </ul>
+    </div>
+    {% endblock topmenu %}
+	
+	<div class="colmask leftmenu">
+	    <div class="colright">
+	        <div class="col1wrap">
+	            <div class="col1">
+	                <!-- Column 1 start (center col) -->
+	                {% block content %}
+	              	{% block messages %}	              	
+	                <div id="messages">
+	                
+	                </div>
+	              	{% endblock messages %}	              	
+					<div id="content-page-container">
+						<div id="content-page-header">
+							<div id="content-page-additional">
+							{% block content_page_additional %}
+							{% endblock content_page_additional %}
+							</div>
+							<div id="content-page-title">
+								{% block content_page_title %}
+							    <h3>H3 page title</h3>
+							    {% endblock content_page_title %}
+							</div>
+						</div>
+						<div id="content-page-buttons">
+						{% block content_page_buttons %}
+						
+						{% endblock content_page_buttons %}
+						</div>
+						<div id="content-page-detail">
+						{% block content_page_detail %}
+						Content page detail
+						{% endblock content_page_detail %}
+						</div>
+					</div>
+	                
+	                {% endblock content %}
+	                <!-- Column 1 end (center col) -->
+	            </div>
+	        </div>
+	        <div class="col2">
+	            <!-- Column 2 start (left col) -->
+	            {% block menu %}
+	            {% endblock menu %}
+	            <!-- Column 2 end (left col) -->
+	        </div>
+	    </div>
+	</div>
+	
+	
+	<div id="footer">
+	{% block footer %}
+	{% endblock footer %}
+	</div>
+</div>
+</body>
+</html>

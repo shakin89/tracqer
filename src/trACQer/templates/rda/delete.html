@@ -1,0 +1,33 @@
+{% extends "rda/base-rda.html" %}
+
+{% block content %}
+<form action="" method="POST">
+{% csrf_token %}
+<p>Vuoi eliminare la seguente R.d.A.?</p>
+<table id="tab-rda-detail">
+	<tr class="tab-riga-dispari">
+	   <th class="tab-rda-th">Numero:</th>
+	   <td class="tab-rda-td">{{ rda.numero }}</td>
+	</tr>
+    <tr class="tab-riga-pari">
+       <th class="tab-rda-th">Protocollo ACQ:</th>
+       <td class="tab-rda-td">
+       {% if rda.protocollo_acq_numero %}
+       {{ rda.protocollo_acq_numero }} del {{ rda.protocollo_acq_data }}
+       {% else %}
+       N.D.
+       {% endif %}
+       </td>
+    </tr>
+    <tr class="tab-riga-dispari">
+       <th class="tab-rda-th">Shopping Cart:</th>
+       <td class="tab-rda-td">{{ rda.shopping_cart }}</td>
+    </tr>
+</table>
+<input type="submit" title="Elimina" value="Elimina" />
+<input type="reset" title="indietro" value="indietro" />
+
+</form>
+
+{% endblock content %}
+

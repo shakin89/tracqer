@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+	<title>{% block title %}{% endblock title %}</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<meta name="description" content="trACQer Application" />
+	<meta name="keywords" content="trACQer Application" />
+	<meta name="robots" content="index, follow" />
+	<link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+	{% block css %}
+	<link rel="stylesheet" type="text/css" href="/static/css/tracqer.css" media="screen" />
+	{% endblock css %}
+	{% block extracss %}
+	{% endblock extracss%}
+</head>
+<body>
+
+<div id="header">
+	<h1>
+	{% block header_content %}
+	trACQer Application
+	{% endblock header_content%}</h1>
+	{% block h2_header_subtitle %}
+	{% endblock h2_header_subtitle %}
+	{% block topmenu %}
+	<ul>
+		<li><a href="/rda/">R.D.A.</a></li>
+		<li><a href="/oda/">O.D.A.</a></li>
+		<li><a href="/gare/">Gare</a></li>
+		<li><a href="/buyers/">Buyers</a></li>
+		<li><a href="/imprese/">Imprese</a></li>
+		<li><a href="/certificazioni/">R.D.A.</a></li>
+		<li><a href="/admin/">Configrazione</a></li>
+		<li><a href="/auth/login/">Login</a></li>
+		<li><a href="/auth/logout/">Logout</a></li>
+	</ul>
+	{% endblock topmenu %}
+</div>
+<div class="colmask threecol">
+	<div class="colmid">
+		<div class="colleft">
+			<div class="col1">
+				<!-- Column 1 start (center col) -->
+				{% block content %}
+				{% endblock content %}
+				<!-- Column 1 end (center col) -->
+			</div>
+			<div class="col2">
+				<!-- Column 2 start (left col) -->
+				{% block menu %}
+				{% endblock menu %}
+				<!-- Column 2 end (left col) -->
+			</div>
+			<div class="col3">
+				<!-- Column 3 start (right col) -->
+				{% block rightcol %}
+				{% endblock rightcol %}
+				<!-- Column 3 end (righht col) -->
+			</div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+{% block footer %}
+{% endblock footer %}
+</div>
+
+</body>
+</html>

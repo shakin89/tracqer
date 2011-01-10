@@ -1,0 +1,34 @@
+'''
+Created on 24/nov/2010
+
+@author: manci409
+'''
+from trACQer.rda.models import RichiestaDiAcquisto, FaseProcessoAcquisti
+from trACQer.rda.models import SceltaContraente, SceltaContraenteDettaglio
+from trACQer.rda.models import StatoRda, TipologiaContratto
+from django.contrib import admin
+        
+class RdaAdmin(admin.ModelAdmin):
+    list_display = ('numero', 'funzione_origine', 'numero_origine')
+admin.site.register(RichiestaDiAcquisto, RdaAdmin)
+
+class FaseProcessoAcquistiAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(FaseProcessoAcquisti, FaseProcessoAcquistiAdmin)
+
+class SceltaContraenteAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(SceltaContraente, SceltaContraenteAdmin)
+
+class SceltaContraenteDettaglioAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(SceltaContraenteDettaglio, SceltaContraenteDettaglioAdmin)
+
+class StatoRdaAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(StatoRda, StatoRdaAdmin)
+
+class TipologiaContrattoAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(TipologiaContratto, TipologiaContrattoAdmin)
+

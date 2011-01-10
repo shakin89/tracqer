@@ -1,0 +1,10 @@
+{% extends "note/base-note.html" %}
+
+{% block content_page_title %}
+<h3>Modifica Nota nr. {{ object.sigla }}</h3>
+{% endblock content_page_title %}
+
+{% block content_page_detail %}
+{% include "generic/edit.html" %}
+{% endblock content_page_detail %}
+

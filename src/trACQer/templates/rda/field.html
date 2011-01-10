@@ -1,0 +1,26 @@
+{% spaceless %}
+<div id="" class="fieldWrapper {% if field.errors %} errors{% endif %}{% if field.field.widget.attrs.class %} {{ field.field.widget.attrs.class }}{% endif %}">
+    {% if field.errors %}
+    <div id="error_{{ field.name }}" class="fieldErrorWrapper">
+        {% for error n field.errors %}
+            <p id="error_{{ forloop.counter }}" class="fieldError">
+                {{ error|safe }}
+            </p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if field.label %}
+    <div id="label_{{ field.name }}" class="fieldLabel{% if field.required %} required{% endif %}">
+        <label for="{{ field.name }}">{{ field.label }}</label>
+    </div>
+    {% endif %}
+    <div id="{{ field.name }}" class="{* if field.required *} required{% endif %}">
+        {{ field }}
+    </div>
+    {% if field.help_text %}
+    <div id="help_{{ field.name }}" class="fieldHelpText">
+        {{ field.help_text %}
+    </div>
+    {% endif %}
+</div>
+{% endspaceless %}

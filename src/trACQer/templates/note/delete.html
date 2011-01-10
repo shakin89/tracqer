@@ -1,0 +1,37 @@
+{% extends "note/base-note.html" %}
+
+{% block content_page_title %}
+<h3>Elimina nota nr. {{ nota.sigla }}</h3>
+{% endblock content_page_title %}
+
+{% block content_page_detail %}
+<form action="" method="POST">
+{% csrf_token %}
+<p>Vuoi eliminare la seguente Nota?</p>
+<table id="tab-rda-detail">
+	<tr class="tab-riga-dispari">
+	   <th class="tab-rda-th">Numero:</th>
+	   <td class="tab-rda-td">{{ nota.sigla }}</td>
+	</tr>
+    <tr class="tab-riga-pari">
+       <th class="tab-rda-th">Protocollo ACQ:</th>
+       <td class="tab-rda-td">
+       {% if nota.protocollo_acq_numero %}
+       {{ nota.protocollo_acq_numero }} del {{ nota.protocollo_acq_data }}
+       {% else %}
+       N.D.
+       {% endif %}
+       </td>
+    </tr>
+    <tr class="tab-riga-dispari">
+       <th class="tab-rda-th">Anno:</th>
+       <td class="tab-rda-td">{{ nota.anno }}</td>
+    </tr>
+</table>
+<input type="submit" title="Elimina" value="Elimina" />
+<input type="reset" title="indietro" value="indietro" />
+
+</form>
+
+{% endblock content_page_detail %}
+
