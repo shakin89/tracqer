@@ -216,6 +216,7 @@ class Nota( models.Model ):
     class Meta:
         verbose_name_plural = 'Note'
         ordering = ['anno']
+        unique_together = ['anno', 'numero']
 
 class StatoRda( models.Model ):
     created = models.DateTimeField( auto_now_add=True )
