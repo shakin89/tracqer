@@ -22,9 +22,6 @@ def search( request, optional_h3=None ):
     if request.method == "POST":
         formset = SearchFormSet( request.POST )
         if formset.is_valid():
-            listaCampi = []
-            for f in Nota._meta.fields:
-                listaCampi.append( f.name )
             filter_dict = {}
             for cdata in formset.cleaned_data:
                 if cdata['valore']:

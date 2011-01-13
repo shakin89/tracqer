@@ -1,0 +1,11 @@
+Le tabelle di dettaglio DI UN SINGOLO OGGETTO devono avere:
+- tag table class="tab-obj-det"
+- tag tr class="tab-obj-det-pari" o class="tab-obj-det-dispari"
+- tag td class="tab-obj-det-td"
+- tag th class="tab-obj-det-th"
+
+Le tabelle di LISTA OGGETTI devono avere:
+- tag table class="tab-obj-list"
+- tag tr class="tab-obj-list-pari" o class="tab-obj-list-dispari"
+- tag td class="tab-obj-list-td"
+- tag th class="tab-obj-list-th"

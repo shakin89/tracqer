@@ -196,11 +196,11 @@ class Nota( models.Model ):
     direzione_richiedente = models.ForeignKey( DirezioneRichiedente, related_name="note" )
     numero = models.IntegerField()
     funzione_richiedente = models.ForeignKey( FunzioneRichiedente, related_name="note", blank=True, null=True )
-    numero_ti = models.CharField( max_length=20, blank=True, null=True )
-    protocollo_origine_numero = models.CharField( max_length=30, blank=True, null=True )
-    protocollo_origine_data = models.DateField( blank=True, null=True )
-    protocollo_acq_numero = models.CharField( max_length=30, blank=True, null=True )
-    protocollo_acq_data = models.DateField( blank=True, null=True )
+    numero_ti = models.CharField("Nr. TI", max_length=20, blank=True, null=True )
+    protocollo_origine_numero = models.CharField( "Nr. Prot. Origine", max_length=30, blank=True, null=True )
+    protocollo_origine_data = models.DateField( "Data Prot. Origine", blank=True, null=True )
+    protocollo_acq_numero = models.CharField( "Nr. Prot. ACQ", max_length=30, blank=True, null=True )
+    protocollo_acq_data = models.DateField( "Data Prot. ACQ", blank=True, null=True )
     note = models.TextField( blank=True, null=True )
 
     def __unicode__( self ):

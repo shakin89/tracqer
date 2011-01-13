@@ -10,7 +10,7 @@ def creaListaCampi():
     for f in Nota._meta.fields:
         counter += 1
         if f.name != "id" and f.name != "created" and f.name != "last_modified":
-            lista.append( ( f.name, f.name ) )
+            lista.append( ( f.name, f.verbose_name ) )
     return lista
 
 listaCampi = creaListaCampi()

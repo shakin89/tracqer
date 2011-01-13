@@ -3,8 +3,8 @@
 
 {% block content_page_additional %}
 		<ul>
-			<li><a href="/note/{{ nota.id }}/edit/">Modifica</a></li>
-			<li><a href="/note/{{ nota.id }}/delete/">Elimina</a></li>
+			<li><a href="{{ nota.get_absolute_url }}edit/">Modifica</a></li>
+			<li><a href="{{ nota.get_absolute_url }}delete/">Elimina</a></li>
 		</ul>
 {% endblock content_page_additional %}
 
@@ -17,30 +17,26 @@
 			<li><a href="{{ nota.get_absolute_url }}aggiungi/?tipo=oda">Aggiungi Oda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}aggiungi/?tipo=rda">Aggiungi Rda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}aggiungi/?tipo=gara">Aggiungi Gara</a></li>
+<!-- 
 			<li><a href="{{ nota.get_absolute_url }}collega/?tipo=oda">Collega Oda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}collega/?tipo=rda">Collega Rda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}collega/?tipo=gara">Collega Gara</a></li>
+ -->
 		</ul>
 {% endblock content_page_buttons %}
 {% block content_page_detail %}	
-{{ nota|pprint_ }}
-<table id="tab-rda-detail">
-  <tr class="tab-riga-pari">
-    <th class="tab-rda-th">Nr. Nota:</th>
-    <td class="tab-rda-td">{{ nota.sigla }}</td>
+<table id="tab-obj-det">
+  <tr class="tab-obj-det-dispari">
+    <th class="tab-obj-det-th">Nota</th>
+    <td class="tab-obj-det-td"><b>{{ nota.sigla|default_if_none:"-"|default:"-" }}</b></td>
   </tr>
-  <tr class="tab-riga-dispari">
-    <th class="tab-rda-th">Direzione Richiedente:</th>
-    <td class="tab-rda-td">{{ nota.direzione_richiedente }}</td>
+
+{% for f in listaCampi %}
+  <tr class={% cycle "tab-obj-det-pari" "tab-obj-det-dispari" %}>
+    <th class="tab-obj-det-th">{{ f.0|capfirst }}</th>
+    <td class="tab-obj-det-td">{{ f.1|default_if_none:"-"|default:"-" }}</td>
   </tr>
-  <tr class="tab-riga-dispari">
-    <th class="tab-rda-th">Funzione Richiedente:</th>
-    <td class="tab-rda-td">{{ nota.direzione_richiedente }}</td>
-  </tr>
-  <tr class="tab-riga-pari">
-    <th class="tab-rda-th">Data Arrivo Acq:</th>
-    <td class="tab-rda-td">{{ nota.protocollo_acq_data|default_if_none:"&nbsp;" }}</td>
-  </tr>
+{% endfor %}
 </table>
 
 {% endblock content_page_detail %}
