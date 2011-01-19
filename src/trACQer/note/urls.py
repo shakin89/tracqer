@@ -32,17 +32,17 @@ def note_per_anno( request, anno ):
                              'anno_corrente': anno_corrente}
             )
 
-def note_dettaglio(request, object_id):
-    n = Nota.objects.get(pk=int(object_id))
-    listaCampi = [(f.verbose_name, eval("n."+ f.name)) for f in Nota._meta.fields][3:]
+def note_dettaglio( request, object_id ):
+    n = Nota.objects.get( pk=int( object_id ) )
+    listaCampi = [( f.verbose_name, eval( "n." + f.name ) ) for f in Nota._meta.fields][3:]
     #listaCampi.insert(0, ("Nota", n.sigla))
     #listaCampi=[(f.verbose_name, f.value_to_string()) for f in Nota._meta.fields]
-    return list_detail.object_detail(request,
-               queryset= Nota.objects.all(),
+    return list_detail.object_detail( request,
+               queryset=Nota.objects.all(),
                object_id=object_id,
-               template_name= 'note/detail.html',
-               template_object_name= 'nota',
-               extra_context={'listaCampi': listaCampi})
+               template_name='note/detail.html',
+               template_object_name='nota',
+               extra_context={'listaCampi': listaCampi} )
 
 note_create = {#'model': Nota,
                'form_class': NoteCreateForm,

@@ -48,6 +48,21 @@
 	clear: both;
 }
 
+#content-page-detail .tab-obj-list-azioni a, 
+#content-page-detail .tab-obj-list-azioni a:active, 
+#content-page-detail .tab-obj-list-azioni a:hover, 
+#content-page-detail .tab-obj-list-azioni a:link, 
+#content-page-detail .tab-obj-list-azioni a:visited
+{
+    text-decoration: none;
+    border: 0 none;
+}
+
+#content-page-detail .tab-obj-list-azioni a img {
+    border-style: none;
+    margin: 0;
+}
+
 #content-page-buttons {
 	clear: both;
 	float: left;

@@ -1,1 +1,20 @@
 {% extends "master.html" %}
+
+{% block topmenu %}
+<div id="centeredmenu">
+    <ul>
+{% if user.is_authenticated %}
+        <li><a href="/rda/">R.d.A.</a></li>
+        <li><a href="/oda/">O.d.A.</a></li>
+        <li><a href="/gare/">Gare</a></li>
+        <li><a href="/buyers/">Buyers</a></li>
+        <li><a href="/imprese/">Imprese</a></li>
+        <li><a href="/certificazioni/">R.D.A.</a></li>
+        <li><a href="/admin/">Configrazione</a></li>
+        <li><a href="/accounts/logout/">Logout</a></li>
+{% else %}
+    <li><a href="/accounts/login/">Login</a></li>
+{% endif %}
+        </ul>
+    </div>
+{% endblock topmenu %}

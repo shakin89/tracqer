@@ -28,11 +28,11 @@ def search( request, optional_h3=None ):
                     campo = cdata['campo']
                     criterio = cdata['criterio']
                     valore = cdata['valore']
-                    filter_dict.setdefault( campo + '__' + criterio, valore )
+                    filter_dict.setdefault( str( campo + '__' + criterio ), str( valore ) )
             return list_detail.object_list( request,
                 queryset=Nota.objects.filter( **filter_dict ),
                 paginate_by=100,
-                template_name='note/list.html',
+                template_name='note/search_results.html',
                 template_object_name='note' )
         else:
             return HttpResponse( formset.errors )

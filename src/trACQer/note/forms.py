@@ -28,16 +28,19 @@ class NoteCreateForm( forms.ModelForm ):
     class Meta:
         model = Nota
         exclude = ( 'numero', )
-    
+
     @transaction.commit_on_success
     def save( self, commit=True ):
-        model = super( NoteCreateForm, self ).save( commit=False ) 
+        model = super( NoteCreateForm, self ).save( commit=False )
         num = Nota.objects.filter( anno__exact=model.anno ).aggregate( Max( 'numero' ) )
-        model.numero = int( num.get( 'numero__max', 0 ) ) + 1
+        if num.get( 'numero__max' ):
+            model.numero = int( num.get( 'numero__max' ) ) + 1
+        else: #the object is none or doesn't exist
+            model.numero = 1
         if commit:
             model.save()
         return model
-    
+
 class SearchForm( forms.Form ):
     campo = forms.ChoiceField( choices=listaCampi, label="" )
     criterio = forms.ChoiceField( choices=criteriRicerca, label="" )

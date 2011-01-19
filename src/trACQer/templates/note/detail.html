@@ -17,11 +17,11 @@
 			<li><a href="{{ nota.get_absolute_url }}aggiungi/?tipo=oda">Aggiungi Oda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}aggiungi/?tipo=rda">Aggiungi Rda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}aggiungi/?tipo=gara">Aggiungi Gara</a></li>
-<!-- 
+{% comment %}
 			<li><a href="{{ nota.get_absolute_url }}collega/?tipo=oda">Collega Oda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}collega/?tipo=rda">Collega Rda</a></li>
 			<li><a href="{{ nota.get_absolute_url }}collega/?tipo=gara">Collega Gara</a></li>
- -->
+{% endcomment %}
 		</ul>
 {% endblock content_page_buttons %}
 {% block content_page_detail %}	

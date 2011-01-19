@@ -1,66 +1,73 @@
 {% extends "note/base-note.html" %}
 
 {% block content_page_additional %}
-			<form action="" id="form-anno" method="POST">
-			{% csrf_token %}
-			Seleziona Anno: 
-			<select name="scelta_anno">
-			{% for a in anni_note %}
-			    {% if a == anno_corrente  %}
-	       		    <option id="scelta_anno" value="{{ a }}" selected="selected">{{ a }}</option>
-			    {% else %}
-			        <option id="scelta_anno" value="{{ a }}">{{ a }}</option>
-			    {% endif %}    
-			{% endfor %}
-			</select>
-			<input type="submit" value="Vai" title="Vai" />
-			</form>
+            <form action="" id="form-anno" method="POST">
+            {% csrf_token %}
+            Seleziona Anno: 
+            <select name="scelta_anno">
+            {% for a in anni_note %}
+                {% if a == anno_corrente  %}
+                       <option id="scelta_anno" value="{{ a }}" selected="selected">{{ a }}</option>
+                {% else %}
+                    <option id="scelta_anno" value="{{ a }}">{{ a }}</option>
+                {% endif %}    
+            {% endfor %}
+            </select>
+            <input type="submit" value="Vai" title="Vai" />
+            </form>
 {% endblock content_page_additional %}
 
 {% block content_page_title %}
-		    <h3>Lista Note per l'anno {{ anno }}</h3>
+            <h3>Lista Note per l'anno {{ anno }}</h3>
 {% endblock content_page_title %}
 
 {% block content_page_detail %}
 {% if note_list %}
-		<table class="tab-obj-list">
-			<tr>
-				<th>Azioni</th>
-				<th>Nota Nr.</th>
-				<th>Dir. Richiedente</th>
-				<th>Data arrivo ACQ</th>
-				<th>Protocollo</th>
-				<th>Numero T.I.</th>
-			</tr>
-			{% for nota in note_list %}
-			<tr class="{% cycle 'tab-obj-list-pari' 'tab-obj-list-dispari' %}">
-				<td class="tab-obj-list-azioni">&nbsp;</td>
-				<td>{{ nota.sigla }}</td>
-				<td>{{ nota.direzione_richiedente }}</td>
-				<td>{{ nota.protocollo_acq_data|default_if_none:"&nbsp;" }}</td>
-				<td>{{ nota.protocollo|default_if_none:"&nbsp;" }}</td>
-				<td>{{ nota.numero_ti|default_if_none:"&nbsp;" }}</td>
-			</tr>
-			{% endfor %}
-		</table>
+        <table class="tab-obj-list">
+            <tr>
+                <th>Azioni</th>
+                <th>Nota Nr.</th>
+                <th>Dir. Richiedente</th>
+                <th>Data arrivo ACQ</th>
+                <th>Protocollo</th>
+                <th>Numero T.I.</th>
+            </tr>
+            {% for nota in note_list %}
+            <tr class="{% cycle 'tab-obj-list-pari' 'tab-obj-list-dispari' %}">
+                <td class="tab-obj-list-azioni">
+                    <a href="{{ nota.get_absolute_url }}"><img alt="Dettagli" src="/static/img/detail.png" height="18" width="18"></a>
+                    <a href="{{ nota.get_absolute_url }}edit"><img alt="Modifica" src="/static/img/edit.png" height="18" width="18"></a>
+                    <a href="{{ nota.get_absolute_url }}delete"><img alt="Cancella" src="/static/img/delete.png" height="18" width="18"></a>
+                </td>
+                <td>{{ nota.sigla }}</td>
+                <td>{{ nota.direzione_richiedente }}</td>
+                <td>{{ nota.protocollo_acq_data|default_if_none:"&nbsp;" }}</td>
+                <td>{{ nota.protocollo|default_if_none:"&nbsp;" }}</td>
+                <td>{{ nota.numero_ti|default_if_none:"&nbsp;" }}</td>
+            </tr>
+            {% endfor %}
+        </table>
 {% else %}
     <div>Non ci sono Note da visualizzare</div>
 {% endif %}
-		{% if is_paginated %}
-		<div class="pagination">
-		    <span class="step-links">
-		        {% if note_list.has_previous %}
-		            <a href="?page={{ note_list.previous_page_number }}">&lt;&lt; Precedente</a>
-		        {% endif %}
-		
-		        <span class="current">
-		            Pagina {{ note_list.number }} di {{ note_list.paginator.num_pages }}.
-		        </span>
-		
-		        {% if note_list.has_next %}
-		            <a href="?page={{ note_list.next_page_number }}">Prossimo &gt;&gt;</a>
-		        {% endif %}
-		    </span>
-		</div>
-		{% endif %}
+        {% if is_paginated %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">Prima Pag.</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">&lt;&lt; Prec.</a>
+                {% endif %}
+        
+                <span class="current">
+                    Pag. {{ page_obj.number }} / {{ paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Succ. &gt;&gt;</a>
+                    <a href="?page=last">Ultima Pag.</a>
+                    
+                {% endif %}
+            </span>
+        </div>
+        {% endif %}
 {% endblock content_page_detail %}

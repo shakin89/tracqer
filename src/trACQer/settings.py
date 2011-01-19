@@ -95,12 +95,10 @@ TEMPLATE_DIRS = (
     ABSOLUTE_PATH + 'templates/'
  )
 
-#===============================================================================
-# TEMPLATE_CONTEXT_PROCESSORS = ( 
-#    'django.core.context_processors.request',
-#    'django.contrib.auth.context_processors.auth',
-# )
-#===============================================================================
+TEMPLATE_CONTEXT_PROCESSORS = ( 
+    'django.core.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+ )
 
 INSTALLED_APPS = ( 
     'django.contrib.auth',
@@ -110,7 +108,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'django.contrib.databrowse',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'debug_toolbar',
@@ -121,6 +118,4 @@ INSTALLED_APPS = (
     'note'
  )
 
-
-STATIC_ROOT = os.path.join( ABSOLUTE_PATH, 'static' )
-STATIC_URL = '/static/'
+#AUTH_PROFILE_MODULE = 'buyers.Buyer'
