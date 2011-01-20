@@ -1,0 +1,31 @@
+Generale:
+ - completare i fogli di stile
+ - disegnare un form per il login
+ - disegnare un form per il recupero password
+ - disegnare un form per la modifica del profilo e delle informazioni utente
+
+Note
+ [OK] inserire link e icone per le azioni nel object_list
+ [OK] completare la view e il template per il dettaglio oggetto.
+ - nel dettaglio nota inserire il riepilogo di tutti i documenti collegati.
+ - controllare che gli utenti siano autenticati
+
+Documento
+ - creare la view e il template per il dettaglio di un documento
+ - creare la view e il template per la lista di documenti
+ - creare la view e il template per l'inserimento di un documento
+ - creare la view e il template per la cancellazione di un documento
+ - creare la view e il template per la ricerca di un documento
+ - controllare che l'utente sia loggato primadi visualizzare le view.
+
+Buyer
+ - estendere il modello User con le informazioni dei buyer
+ - creare la view e il template per la creazione, la modifica, la ricerca e la cancellazione di un buyer
+ - controllare che l'utente sia loggato prima di visualizzare le view.
+
+Imprese
+ - creare il modello
+ - creare il form per il modello
+ - creare la view e il template per la creazione, modifica e cancellazione.
+ - creare la view e il template per la lista di oggetti e per il dettaglio oggetto
+ - creare la view e il template per la ricerca

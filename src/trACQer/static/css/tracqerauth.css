@@ -1,0 +1,96 @@
+/* <!-- */
+    /* General styles */
+    body {
+        margin:0;
+        padding:0;
+        border:0;           /* This removes the border around the viewport in old versions of IE */
+        width:100%;
+        background:#fff;
+        min-width:600px;    /* Minimum width of layout - remove line if not required */
+                            /* The min-width property does not work in old versions of Internet Explorer */
+        font-size:90%;
+        text-align: center; /* serve per impostare il layout fixed insieme all'id fixed*/
+        font-family: "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+    }
+    a {
+        color:#369;
+    }
+    a:hover {
+        color:#fff;
+        background:#369;
+        text-decoration:none;
+    }
+    h1, h2, h3 {
+        margin:.8em 0 .2em 0;
+        padding:0;
+    }
+    p {
+        margin:.4em 0 .8em 0;
+        padding:0;
+    }
+    img {
+        margin:10px 0 5px;
+    }
+#auth-form {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:6em;
+    padding:0;
+    border: 1px;
+    border-color: gray;
+    border-style: solid;
+}
+
+#auth-form-title {
+    background-color: #B6E4ED;
+    margin-top:0;
+    padding: 10px 0 10px 0;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+#auth-form-errors {
+    background-color: #F00;
+    color: #FFF;
+    font-weight: bold;
+    margin-top:0px;
+    border-style: solid;
+    border-color: gray;
+    border-width: 1px;
+}
+#auth-form-content div {
+	margin: 20px 0 10px 0;
+}
+
+#auth-form-content div label {
+    display:block;
+    float:left;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 15px;
+    padding-right: 5px;
+    width: 100px;
+}
+
+#auth-form-content div input {
+    padding-left:0;
+    width:200px;
+}
+
+#auth-form-content div #submit {
+    width: 100px;
+}
+
+/* Footer styles */
+    #footer {
+        clear:both;
+        float:left;
+        width:100%;
+        border-top:1px solid #000;
+    }
+    #footer p {
+        padding:10px;
+        margin:0;
+    }
+

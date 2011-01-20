@@ -1,0 +1,42 @@
+{% spaceless %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB">
+<head>
+    <title>trACQer App: Autenticazione</title>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <meta name="description" content="trACQer Application" />
+    <meta name="keywords" content="trACQer Application" />
+    <meta name="robots" content="index, follow" />
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/static/css/tracqerauth.css" type="text/css" media="screen" /> 
+</head>
+<body id="body">
+
+<div id="auth-form">
+    <div id="auth-form-title">trACQer: Autenticazione</div>
+    {% if form.errors %}
+    <div id="auth-form-errors">
+            <p class="error">Spiacenti ma il nome utente e la password non sono corretti!</p>
+    </div>
+    {% endif %}
+    <div id="auth-form-content">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="username">User name:</label>
+                <input type="text" name="username" value="" id="username">
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" value="" id="password">
+            </div>
+            <div>
+                <input id="submit" type="submit" value="login" />
+            </div>
+            <input type="hidden" name="next" value="{{ next|escape }}" />
+    </form>
+    </div>
+</div>
+</body>
+</html>
+{% endspaceless %}
