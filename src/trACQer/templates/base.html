@@ -1,11 +1,17 @@
 {% extends "master.html" %}
 
+
+{% block user_info %}
+{% if user.is_authenticated %}
+Utente: {{ user.username }}
+{% endif %}
+{% endblock user_info %}
+
 {% block topmenu %}
 <div id="centeredmenu">
     <ul>
 {% if user.is_authenticated %}
-        <li><a href="/rda/">R.d.A.</a></li>
-        <li><a href="/oda/">O.d.A.</a></li>
+        <li><a href="/note/">Note</a></li>
         <li><a href="/gare/">Gare</a></li>
         <li><a href="/buyers/">Buyers</a></li>
         <li><a href="/imprese/">Imprese</a></li>

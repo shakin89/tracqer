@@ -5,18 +5,21 @@ Created on 17/dic/2010
 '''
 
 from django.conf.urls.defaults import patterns
-from django.http import Http404
+from django.http import HttpResponseNotFound
 from django.views.generic import create_update, list_detail
+from django.contrib.auth.decorators import login_required
+
 from trACQer.note.models import Nota
-import datetime
 from trACQer.note.forms import NoteCreateForm
+from trACQer.note.views import index, edit, delete, search, aggiungi, collega, creaDocumento
+import datetime
 
 def note_per_anno( request, anno ):
     if request.method == 'POST':
         anno = int( request.POST.get( 'scelta_anno', datetime.datetime.now().year ) )
     note = Nota.objects.filter( anno__exact=anno ).values( 'anno' ).distinct()
     if not note:
-        return Http404
+        return HttpResponseNotFound( 'Oggetto non trovato' )
     anniNote = Nota.objects.distinct().values( 'anno' )
     anni_note = []
     for a in anniNote:
@@ -60,18 +63,19 @@ note_delete = {'model': Nota,
                'template_object_name': 'nota'}
 
 urlpatterns = patterns( '',
-        ( r'^$', 'trACQer.note.views.index' ),
-        ( r'^list/(?P<anno>\d{4})/$', note_per_anno ),
-        ( r'^create/$', create_update.create_object, note_create ),
-        ( r'^edit/$', 'trACQer.note.views.edit' ),
-        ( r'^delete/$', 'trACQer.note.views.delete' ),
-        ( r'^search/$', 'trACQer.note.views.search' ),
+        ( r'^$', login_required( index ) ),
+        ( r'^list/(?P<anno>\d{4})/$', login_required( note_per_anno ) ),
+        ( r'^create/$', login_required( create_update.create_object ), note_create ),
+        ( r'^edit/$', login_required( edit ) ),
+        ( r'^delete/$', login_required( delete ) ),
+        ( r'^search/$', login_required( search ) ),
         #( r'^(?P<object_id>\d+)/$', list_detail.object_detail, nota_detail ),
-        ( r'^(?P<object_id>\d+)/$', note_dettaglio ),
-        ( r'^(?P<object_id>\d+)/edit/$', create_update.update_object, note_update ),
-        ( r'^(?P<object_id>\d+)/delete/$', create_update.delete_object, note_delete ),
-        ( r'^(?P<object_id>\d+)/aggiungi/$', 'trACQer.note.views.aggiungi' ),
-        ( r'^(?P<object_id>\d+)/collega/$', 'trACQer.note.views.collega' ),
+        ( r'^(?P<object_id>\d+)/$', login_required( note_dettaglio ) ),
+        ( r'^(?P<object_id>\d+)/edit/$', login_required( create_update.update_object ), note_update ),
+        ( r'^(?P<object_id>\d+)/delete/$', login_required( create_update.delete_object ), note_delete ),
+        ( r'^(?P<object_id>\d+)/aggiungi/$', login_required( aggiungi ) ),
+        ( r'^(?P<object_id>\d+)/collega/$', login_required( collega ) ),
+        ( r'^(?P<note_id>\d+)/documento/create/$', login_required( creaDocumento ) ),
         ( r'^test/$', 'trACQer.note.views.test' ),
         )
 

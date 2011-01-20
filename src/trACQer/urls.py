@@ -14,8 +14,8 @@ urlpatterns = patterns( '',
     ( r'^admin/', include( admin.site.urls ) ),
     ( r'^accounts/login/$', login ),
     ( r'^accounts/logout/$', logout ),
-    ( r'^rda/', include( 'trACQer.rda.urls' ) ),
-    ( r'^note/', include( 'trACQer.note.urls' ) ),
+    ( r'^rda/', include( 'trACQer.rda.urls' ) ) ,
+    ( r'^note/', include( 'trACQer.note.urls' ) ) ,
     )
 
 #if settings.DEBUG:

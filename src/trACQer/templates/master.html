@@ -50,7 +50,6 @@
         </ul>
     </div>
     {% endblock topmenu %}
-    
     <div class="colmask leftmenu">
         <div class="colright">
             <div class="col1wrap">
@@ -62,6 +61,16 @@
                             
                             </div>
                         {% endblock messages %}                      
+                    <div id="navigation">
+                        <div id="navbar">
+                        {% block navbar %}
+                        {% endblock navbar %}
+                        </div>
+                        <div id="user-info">
+                        {% block user_info %}
+                        {% endblock user_info %}
+                        </div>
+                    </div>
                     <div id="content-page-container">
                         <div id="content-page-header">
                             <div id="content-page-additional">

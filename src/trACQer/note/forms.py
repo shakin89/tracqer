@@ -1,7 +1,7 @@
 
 from django import forms
 from django.db.models import Max
-from trACQer.note.models import Nota
+from trACQer.note.models import Nota, Documento
 from django.db import transaction
 
 def creaListaCampi():
@@ -48,5 +48,8 @@ class SearchForm( forms.Form ):
 
 SearchFormSet = forms.formsets.formset_factory( SearchForm, max_num=4 )
 
+class DocumentoCreateForm( forms.ModelForm ):
+    class Meta:
+        model = Documento
 
 

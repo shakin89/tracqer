@@ -51,18 +51,22 @@ def aggiungi( request, object_id ):
     if 'tipo' in request.GET and tipo:
         if tipo == 'oda':
             request.session['nota_id'] = object_id
-            return HttpResponseRedirect( '/oda/create/' )
+            return HttpResponseRedirect( '/note/%s/documento/create/?tipo=%s' % ( object_id, tipo ) )
         if tipo == 'rda':
             request.session['nota_id'] = object_id
-            return HttpResponseRedirect( '/rda/create/' )
+            return HttpResponseRedirect( '/note/%s/documento/create/?tipo=%s' % ( object_id, tipo ) )
         if tipo == 'gara':
             request.session['nota_id'] = object_id
-            return HttpResponseRedirect( '/gara/create/' )
+            return HttpResponseRedirect( '/note/%s/documento/create/?tipo=%s' % ( object_id, tipo ) )
         return Http404
     else:
         return Http404
 
 def collega( request, type=None ):
+    pass
+
+def creaDocumento( request, note_id ):
+
     pass
 
 def test( request ):
